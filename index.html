@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sheabok — Bakuchiol + Shea Butter Anti-Aging Cream</title>
+<meta name="description" content="Sheabok anti-aging cream with bakuchiol and shea butter. Helps reduce the appearance of fine lines and supports smoother-looking skin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   RESET & FOUNDATIONS
+   ================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep: #FAF9F6;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FBF9F5;
+  --bg-surface: #F5F3EE;
+  --gold: #C6A75E;
+  --gold-light: #D4B96A;
+  --gold-dark: #A8893E;
+  --gold-muted: rgba(198, 167, 94, 0.1);
+  --gold-glow: rgba(198, 167, 94, 0.2);
+  --text-primary: #1A1A1A;
+  --text-secondary: #5C5850;
+  --text-muted: #8A8578;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.012;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* Gold cursor spotlight */
+#cursor-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(198,167,94,0.07) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  will-change: left, top;
+  transition: opacity 0.3s ease;
+}
+
+/* ================================================================
+   TYPOGRAPHY
+   ================================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
+
+.section-label {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.gold-text { color: var(--gold); }
+.italic { font-style: italic; }
+
+/* ================================================================
+   LAYOUT
+   ================================================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+section {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+  position: relative;
+}
+
+/* Gold divider */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 2rem auto;
+}
+
+/* ================================================================
+   NAVIGATION
+   ================================================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  transition: background var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.nav.scrolled {
+  background: rgba(250, 249, 246, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(198, 167, 94, 0.15), 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-decoration: none;
+  transition: opacity var(--transition-smooth);
+}
+.nav-logo:hover { opacity: 0.8; }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color var(--transition-smooth);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width var(--transition-smooth);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--gold);
+}
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+  width: 100%;
+}
+
+/* Mobile menu */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 24px;
+  position: relative;
+  z-index: 1001;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--gold);
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.nav-toggle span:nth-child(3) { bottom: 0; }
+
+.nav-toggle.open span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    background: rgba(250, 249, 246, 0.98);
+    backdrop-filter: blur(30px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .nav-links a {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark), var(--gold));
+  background-size: 300% 300%;
+  animation: btnShimmer 5s ease-in-out infinite;
+  color: #FFFFFF;
+  padding: 1rem 2.5rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px rgba(198, 167, 94, 0.2);
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 30px rgba(198, 167, 94, 0.35);
+  transform: translateY(-2px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--gold);
+  padding: 0.9rem 2.2rem;
+  border: 1px solid rgba(198, 167, 94, 0.4);
+  border-radius: var(--radius-sm);
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: rgba(198, 167, 94, 0.08);
+  box-shadow: 0 0 20px rgba(198, 167, 94, 0.1);
+}
+
+/* ================================================================
+   HERO SECTION
+   ================================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 72px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 70%;
+  height: 120%;
+  background: radial-gradient(ellipse at center, rgba(198, 167, 94, 0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 560px;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s forwards;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 300;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  max-width: 440px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.7s forwards;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.9s forwards;
+}
+
+/* Trust badges */
+.trust-badges {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.1s forwards;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.trust-badge svg {
+  width: 16px;
+  height: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Hero product card */
+.hero-product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 800px;
+  opacity: 0;
+  animation: fadeUp 1s 0.6s forwards;
+}
+
+.product-card-wrapper {
+  position: relative;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.product-card {
+  width: clamp(260px, 22vw, 340px);
+  height: clamp(340px, 30vw, 440px);
+  background: linear-gradient(170deg, #FFFFFF 0%, #FAF9F6 50%, #F5F3EE 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(198, 167, 94, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.06), 0 10px 30px rgba(0,0,0,0.04), 0 0 0 1px rgba(198,167,94,0.1);
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(160deg, rgba(198,167,94,0.25), transparent 40%, transparent 60%, rgba(198,167,94,0.15));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* CSS product jar */
+.jar {
+  position: relative;
+  width: 140px;
+  height: 110px;
+  margin-bottom: 1.5rem;
+}
+
+.jar-body {
+  width: 140px;
+  height: 90px;
+  background: linear-gradient(180deg, #F8F6F1 0%, #EDE9E0 60%, #E5E0D6 100%);
+  border-radius: 16px;
+  position: absolute;
+  bottom: 0;
+  border: 1px solid rgba(198,167,94,0.25);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.jar-lid {
+  width: 120px;
+  height: 28px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
+  border-radius: 8px 8px 4px 4px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgba(198,167,94,0.3);
+}
+
+.jar-lid::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 1px;
+}
+
+.jar-label {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 2;
+}
+
+.jar-label-brand {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  display: block;
+}
+
+.jar-label-sub {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.product-card-name {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+.product-card-tagline {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+/* Shimmer effect on product card */
+.product-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(198, 167, 94, 0.04) 45%,
+    rgba(198, 167, 94, 0.08) 50%,
+    rgba(198, 167, 94, 0.04) 55%,
+    transparent 60%
+  );
+  animation: shimmer 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translate(-30%, -30%) rotate(0deg); }
+  50% { transform: translate(30%, 30%) rotate(0deg); }
+}
+
+@keyframes btnShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Thin gold dividers between sections */
+section + section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80%, 600px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(198,167,94,0.3), transparent);
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-content { max-width: 100%; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-ctas { justify-content: center; }
+  .trust-badges { justify-content: center; }
+  .hero-product { order: -1; margin-bottom: 2rem; }
+}
+
+/* ================================================================
+   BENEFITS SECTION
+   ================================================================ */
+#benefits { background: var(--bg-surface); }
+
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.benefit-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(198,167,94,0.12);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.8rem;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(198,167,94,0.4), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-smooth);
+}
+
+.benefit-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(198, 167, 94, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+}
+.benefit-card:hover::before { opacity: 1; }
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--gold-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.3rem;
+}
+
+.benefit-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--gold);
+}
+
+.benefit-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-bottom: 0.7rem;
+  color: var(--text-primary);
+}
+
+.benefit-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ================================================================
+   INGREDIENTS SECTION
+   ================================================================ */
+#ingredients {
+  background: var(--bg-deep);
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.ingredient-card {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(245,243,238,0.6) 100%);
+  border: 1px solid rgba(198,167,94,0.12);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+  transition: all var(--transition-smooth);
+  position: relative;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+}
+
+.ingredient-card:hover {
+  border-color: rgba(198,167,94,0.3);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+}
+
+.ingredient-name {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.ingredient-latin {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.03em;
+}
+
+.ingredient-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+}
+
+.why-callout {
+  background: var(--gold-muted);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1rem 1.2rem;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.why-callout strong {
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.disclaimer-line {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .ingredients-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================
+   HOW TO USE SECTION
+   ================================================================ */
+#howto {
+  background: var(--bg-surface);
+}
+
+.routine-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.routine-tab {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.7rem 2rem;
+  border: 1px solid rgba(198,167,94,0.25);
+  border-radius: 40px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+.routine-tab:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.routine-tab.active,
+.routine-tab:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.steps-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.routine-panel { display: none; }
+.routine-panel.active { display: block; }
+
+.step {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(198,167,94,0.12);
+}
+
+.step:last-child { border-bottom: none; }
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(198,167,94,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.step-content h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.3rem;
+  color: var(--text-primary);
+}
+
+.step-content p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ================================================================
+   REVIEWS SECTION
+   ================================================================ */
+#reviews {
+  background: var(--bg-deep);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(198,167,94,0.12);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  transition: all var(--transition-smooth);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+
+.review-card:hover {
+  border-color: rgba(198,167,94,0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+
+.review-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 1rem;
+}
+
+.review-stars svg {
+  width: 15px;
+  height: 15px;
+  color: var(--gold);
+}
+
+.review-text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+  font-style: italic;
+}
+
+.review-author {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.review-author strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ================================================================
+   FAQ SECTION
+   ================================================================ */
+#faq {
+  background: var(--bg-surface);
+}
+
+.faq-list {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(198,167,94,0.15);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  transition: color var(--transition-smooth);
+}
+
+.faq-question:hover,
+.faq-question:focus-visible { color: var(--gold); }
+.faq-question:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 4px; }
+
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  transition: transform 0.3s ease;
+}
+.faq-icon::before {
+  width: 12px;
+  height: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.faq-icon::after {
+  width: 1px;
+  height: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.faq-item.open .faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-answer-inner {
+  padding: 0 0 1.5rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ================================================================
+   BUY SECTION
+   ================================================================ */
+#buy {
+  background: var(--bg-deep);
+}
+
+.buy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.buy-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.buy-jar {
+  width: 180px;
+  height: 145px;
+  position: relative;
+}
+
+.buy-jar .jar-body {
+  width: 180px;
+  height: 120px;
+}
+
+.buy-jar .jar-lid {
+  width: 150px;
+  height: 34px;
+}
+
+.pricing-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(198,167,94,0.2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.pricing-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 0.25rem;
+}
+
+.pricing-price-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.quantity-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(198,167,94,0.2);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-smooth);
+}
+.qty-btn:hover { background: rgba(198,167,94,0.1); }
+.qty-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+
+.qty-value {
+  width: 48px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-left: 1px solid rgba(198,167,94,0.2);
+  border-right: 1px solid rgba(198,167,94,0.2);
+  padding: 0.5rem 0;
+}
+
+.buy-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.microcopy {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Cart toast */
+.cart-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(198,167,94,0.3);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 2000;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+.cart-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cart-toast svg {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+}
+
+.cart-toast span {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .buy-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .buy-visual { margin-bottom: 1rem; }
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.footer {
+  background: #F0EDE6;
+  border-top: 1px solid rgba(198,167,94,0.2);
+  padding: 3rem 0 2rem;
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.footer-tagline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.footer-disclaimer {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 1rem;
+  line-height: 1.6;
+}
+
+.footer-copy {
+  font-size: 0.68rem;
+  color: rgba(0,0,0,0.3);
+}
+
+/* ================================================================
+   ANIMATIONS
+   ================================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .product-card::after { animation: none; }
+  #cursor-glow { display: none; }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-tagline, .hero h1, .hero-sub, .hero-ctas, .trust-badges, .hero-product {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+/* ================================================================
+   FOCUS / ACCESSIBILITY
+   ================================================================ */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor Glow -->
+<div id="cursor-glow" aria-hidden="true"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Sheabok Home">Sheabok</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-menu" role="list">
+      <li><a href="#benefits">Benefits</a></li>
+      <li><a href="#ingredients">Ingredients</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#buy">Buy</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <p class="hero-tagline">Bakuchiol + Shea Butter</p>
+        <h1>Calm, Cushion &amp; <em>Refine</em></h1>
+        <p class="hero-sub">A luxurious cream that helps reduce the appearance of fine lines and supports smoother, more radiant-looking skin — powered by nature's most refined botanicals.</p>
+        <div class="hero-ctas">
+          <a href="#buy" class="btn btn-primary">Buy Now</a>
+          <a href="#ingredients" class="btn btn-secondary">See Ingredients</a>
+        </div>
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2L3 7v6c0 5.25 3.75 10.13 9 11.25C17.25 23.13 21 18.25 21 13V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+            Bakuchiol-powered
+          </div>
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Shea butter nourishment
+          </div>
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Dermatologist-tested*
+          </div>
+        </div>
+      </div>
+      <div class="hero-product" aria-hidden="true">
+        <div class="product-card-wrapper" id="product-tilt">
+          <div class="product-card">
+            <div class="jar">
+              <div class="jar-lid"></div>
+              <div class="jar-body">
+                <div class="jar-label">
+                  <span class="jar-label-brand">Sheabok</span>
+                  <span class="jar-label-sub">Anti-Aging Cream</span>
+                </div>
+              </div>
+            </div>
+            <p class="product-card-name">Sheabok</p>
+            <p class="product-card-tagline">50 ml · Anti-Aging Cream</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BENEFITS
+     ============================================================ -->
+<section id="benefits">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Benefits</span>
+      <h2>Why Your Skin Will <span class="gold-text italic">Love</span> This</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg>
+        </div>
+        <h3>Visibly Smoother Texture</h3>
+        <p>Bakuchiol helps improve the appearance of skin texture over time, supporting a more refined and even-looking complexion.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2a10 10 0 0 1 0 20 10 10 0 0 1 0-20z"/><path d="M12 6v2M12 16v2M6 12h2M16 12h2"/></svg>
+        </div>
+        <h3>Deep Nourishment</h3>
+        <p>Shea butter delivers rich hydration, helping skin feel soft, cushioned, and comfortably moisturized throughout the day.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 3l1.5 5.5L19 10l-5.5 1.5L12 17l-1.5-5.5L5 10l5.5-1.5L12 3z"/></svg>
+        </div>
+        <h3>Radiance Support</h3>
+        <p>Helps promote a more luminous, healthy-looking glow. Skin appears brighter and more refreshed with continued use.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Gentle on Skin</h3>
+        <p>Formulated to be kind to sensitive skin. Bakuchiol offers a gentle, plant-based alternative for those seeking a calmer approach to skincare.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Fine Line Appearance</h3>
+        <p>Helps reduce the visible appearance of fine lines and wrinkles, supporting a smoother, more youthful-looking complexion over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INGREDIENTS
+     ============================================================ -->
+<section id="ingredients">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Key Ingredients</span>
+      <h2>Science Meets <span class="gold-text italic">Nature</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="ingredients-grid">
+      <div class="ingredient-card reveal">
+        <h3 class="ingredient-name">Bakuchiol</h3>
+        <p class="ingredient-latin">Psoralea corylifolia</p>
+        <p>A plant-derived compound celebrated in modern skincare for its skin-smoothing properties. Sourced from the babchi plant, bakuchiol is known for being gentle yet effective.</p>
+        <div class="why-callout">
+          <strong>Why it matters:</strong> Bakuchiol supports the look of firmer, smoother skin without the harshness sometimes associated with other ingredients. Suitable for daily use.
+        </div>
+      </div>
+      <div class="ingredient-card reveal">
+        <h3 class="ingredient-name">Shea Butter</h3>
+        <p class="ingredient-latin">Vitellaria paradoxa</p>
+        <p>A time-honoured, deeply nourishing butter extracted from the African shea tree. Rich in fatty acids and vitamins, it helps condition and soften skin beautifully.</p>
+        <div class="why-callout">
+          <strong>Why it matters:</strong> Shea butter provides a cushion of moisture that helps skin feel supple and protected, creating a luxurious, comforting texture on the skin.
+        </div>
+      </div>
+    </div>
+    <p class="disclaimer-line reveal">For cosmetic use. Patch test recommended before first use.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW TO USE
+     ============================================================ -->
+<section id="howto">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">How To Use</span>
+      <h2>Your <span class="gold-text italic">Daily</span> Ritual</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="routine-tabs reveal" role="tablist" aria-label="Routine selection">
+      <button class="routine-tab active" role="tab" aria-selected="true" aria-controls="panel-am" id="tab-am">AM Routine</button>
+      <button class="routine-tab" role="tab" aria-selected="false" aria-controls="panel-pm" id="tab-pm">PM Routine</button>
+    </div>
+    <div class="steps-container">
+      <div class="routine-panel active" id="panel-am" role="tabpanel" aria-labelledby="tab-am">
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">1</div>
+          <div class="step-content">
+            <h4>Cleanse</h4>
+            <p>Start with a gentle cleanser to prepare a fresh canvas for absorption.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">2</div>
+          <div class="step-content">
+            <h4>Apply Sheabok</h4>
+            <p>Warm a small amount between fingertips and press gently into face and neck using upward strokes.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">3</div>
+          <div class="step-content">
+            <h4>Sunscreen</h4>
+            <p>Follow with a broad-spectrum SPF 30+ to protect your skin throughout the day.</p>
+          </div>
+        </div>
+      </div>
+      <div class="routine-panel" id="panel-pm" role="tabpanel" aria-labelledby="tab-pm" hidden>
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">1</div>
+          <div class="step-content">
+            <h4>Double Cleanse</h4>
+            <p>Remove makeup and impurities with an oil-based cleanser, followed by your regular cleanser.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">2</div>
+          <div class="step-content">
+            <h4>Tone &amp; Treat</h4>
+            <p>Apply your favourite toner or serum if desired. Let it absorb fully before the next step.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">3</div>
+          <div class="step-content">
+            <h4>Apply Sheabok</h4>
+            <p>Generously apply to face and neck. The richer evening application allows deeper overnight nourishment.</p>
+          </div>
+        </div>
+        <div class="step reveal">
+          <div class="step-number" aria-hidden="true">4</div>
+          <div class="step-content">
+            <h4>Rest</h4>
+            <p>Let the cream work overnight. Wake up to skin that feels softer and looks more refreshed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS
+     ============================================================ -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Reviews</span>
+      <h2>What People Are <span class="gold-text italic">Saying</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"After about four weeks of use, my skin looks noticeably smoother. The texture is incredibly luxurious — it sinks right in without feeling heavy."</p>
+        <p class="review-author"><strong>Sarah M.</strong> · Age 35–44 · Verified Buyer</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"I was looking for something gentle that didn't irritate my sensitive skin. Sheabok is now a permanent part of my routine. My fine lines look less visible."</p>
+        <p class="review-author"><strong>David L.</strong> · Age 45–54 · Verified Buyer</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="4 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Beautiful packaging and a lovely scent. My complexion appears brighter and I get compliments now. The only reason for 4 stars is I wish the jar were bigger!"</p>
+        <p class="review-author"><strong>Priya K.</strong> · Age 25–34 · Verified Buyer</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"My dermatologist mentioned bakuchiol as a gentle option and I'm so glad I found Sheabok. It feels like self-care in a jar. Absolutely worth the investment."</p>
+        <p class="review-author"><strong>Michelle R.</strong> · Age 45–54 · Verified Buyer</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"I've tried dozens of creams and this is the one I keep coming back to. There's something about the texture — rich but not greasy. My skin drinks it up."</p>
+        <p class="review-author"><strong>James T.</strong> · Age 35–44 · Verified Buyer</p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-stars" aria-label="4 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Gifted this to my mum for her birthday and she's obsessed. She says her skin feels softer than it has in years. Now I need to order one for myself."</p>
+        <p class="review-author"><strong>Aisha N.</strong> · Age 25–34 · Verified Buyer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">FAQ</span>
+      <h2>Common <span class="gold-text italic">Questions</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What is bakuchiol and how does it differ from retinol?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Bakuchiol is a plant-derived compound from the babchi plant. While it's often discussed alongside retinol, bakuchiol is valued for its gentler profile. It supports smoother-looking skin and is generally well-tolerated, even by those with sensitive skin.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Is Sheabok suitable for sensitive skin?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Sheabok is formulated with gentle ingredients. However, as with any skincare product, we recommend performing a patch test on a small area of skin before full use. Discontinue if irritation occurs.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          How long before I see visible results?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Individual experiences vary. Many users report noticing smoother-feeling skin within the first few weeks of consistent, daily use. For appearance-related changes, we suggest using Sheabok for at least 4–6 weeks.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Can I use Sheabok with other skincare products?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Yes. Sheabok is designed to fit into your existing routine. Apply after serums and before sunscreen in the morning. In the evening, use it as your final moisturizing step. If you have specific concerns, consult your dermatologist.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          Is this product tested on animals?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Sheabok is cruelty-free. We do not test our finished products or ingredients on animals. We believe in responsible, ethical skincare.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What is the shelf life once opened?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">Once opened, we recommend using Sheabok within 12 months. Store in a cool, dry place away from direct sunlight for optimal freshness.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          What does "dermatologist-tested" mean?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer" role="region">
+          <div class="faq-answer-inner">*This is a placeholder claim for demonstration purposes. In a real product, this would indicate the formula was evaluated by board-certified dermatologists for skin compatibility.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUY
+     ============================================================ -->
+<section id="buy">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Shop</span>
+      <h2>Make It <span class="gold-text italic">Yours</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="buy-grid">
+      <div class="buy-visual reveal" aria-hidden="true">
+        <div class="buy-jar jar">
+          <div class="jar-lid"></div>
+          <div class="jar-body">
+            <div class="jar-label">
+              <span class="jar-label-brand">Sheabok</span>
+              <span class="jar-label-sub">Anti-Aging Cream</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-card reveal">
+        <h3 class="pricing-name">Sheabok Anti-Aging Cream</h3>
+        <p class="pricing-desc">50 ml · Bakuchiol + Shea Butter</p>
+        <p class="pricing-price">$68</p>
+        <p class="pricing-price-note">One-time purchase · No subscription required</p>
+
+        <div class="quantity-selector">
+          <span class="quantity-label">Qty</span>
+          <div class="quantity-controls">
+            <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
+            <span class="qty-value" id="qty-value" aria-live="polite">1</span>
+            <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <div class="buy-ctas">
+          <button class="btn btn-primary" id="add-to-cart" style="width:100%;">Add to Cart</button>
+          <button class="btn btn-secondary" id="checkout-btn" style="width:100%;">Checkout</button>
+        </div>
+
+        <p class="microcopy">Free shipping on orders over $100 · 30-day returns · Secure checkout</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cart Toast -->
+<div class="cart-toast" id="cart-toast" role="alert" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+  <span id="cart-toast-text">Added to cart</span>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <p class="footer-logo">Sheabok</p>
+      <p class="footer-tagline">Bakuchiol + Shea Butter. Calm, cushion, and refine the look of skin.</p>
+      <p class="footer-disclaimer">This product is cosmetic. Not intended to diagnose, treat, cure, or prevent any disease. *"Dermatologist-tested" is a placeholder claim used for demonstration purposes only. Individual results may vary.</p>
+      <p class="footer-copy">&copy; 2026 Sheabok. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================================================================
+     REDUCED MOTION CHECK
+     ================================================================ */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  /* ================================================================
+     CURSOR GLOW (desktop only, respects reduced motion)
+     ================================================================ */
+  const cursorGlow = document.getElementById('cursor-glow');
+  if (!prefersReducedMotion && !isTouchDevice && cursorGlow) {
+    let mouseX = -500, mouseY = -500;
+    let glowX = -500, glowY = -500;
+    let rafId;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, { passive: true });
+
+    document.addEventListener('mouseleave', function () {
+      cursorGlow.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', function () {
+      cursorGlow.style.opacity = '1';
+    });
+
+    function updateGlow() {
+      glowX += (mouseX - glowX) * 0.12;
+      glowY += (mouseY - glowY) * 0.12;
+      cursorGlow.style.left = glowX + 'px';
+      cursorGlow.style.top = glowY + 'px';
+      rafId = requestAnimationFrame(updateGlow);
+    }
+    updateGlow();
+  } else if (cursorGlow) {
+    cursorGlow.style.display = 'none';
+  }
+
+  /* ================================================================
+     PRODUCT CARD PARALLAX TILT (desktop only)
+     ================================================================ */
+  const productTilt = document.getElementById('product-tilt');
+  if (!prefersReducedMotion && !isTouchDevice && productTilt) {
+    const hero = document.querySelector('.hero');
+    hero.addEventListener('mousemove', function (e) {
+      const rect = hero.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const rotateY = x * 12;
+      const rotateX = -y * 8;
+      productTilt.style.transform =
+        'rotateY(' + rotateY + 'deg) rotateX(' + rotateX + 'deg) translateZ(10px)';
+    }, { passive: true });
+
+    hero.addEventListener('mouseleave', function () {
+      productTilt.style.transition = 'transform 0.5s ease';
+      productTilt.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0)';
+      setTimeout(function () { productTilt.style.transition = 'transform 0.1s ease-out'; }, 500);
+    });
+  }
+
+  /* ================================================================
+     STICKY NAV SCROLL
+     ================================================================ */
+  const nav = document.querySelector('.nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  /* ================================================================
+     MOBILE MENU
+     ================================================================ */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  navToggle.addEventListener('click', function () {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  navLinks.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ================================================================
+     ROUTINE TABS
+     ================================================================ */
+  const tabs = document.querySelectorAll('.routine-tab');
+  const panels = document.querySelectorAll('.routine-panel');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(function (p) {
+        p.classList.remove('active');
+        p.hidden = true;
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const target = document.getElementById(tab.getAttribute('aria-controls'));
+      target.classList.add('active');
+      target.hidden = false;
+
+      // Re-trigger reveal on newly visible steps
+      target.querySelectorAll('.reveal').forEach(function (el) {
+        el.classList.add('visible');
+      });
+    });
+  });
+
+  /* ================================================================
+     FAQ ACCORDION
+     ================================================================ */
+  document.querySelectorAll('.faq-question').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ================================================================
+     QUANTITY SELECTOR
+     ================================================================ */
+  let qty = 1;
+  const qtyValue = document.getElementById('qty-value');
+  document.getElementById('qty-minus').addEventListener('click', function () {
+    if (qty > 1) { qty--; qtyValue.textContent = qty; }
+  });
+  document.getElementById('qty-plus').addEventListener('click', function () {
+    if (qty < 10) { qty++; qtyValue.textContent = qty; }
+  });
+
+  /* ================================================================
+     ADD TO CART TOAST
+     ================================================================ */
+  const cartToast = document.getElementById('cart-toast');
+  const cartToastText = document.getElementById('cart-toast-text');
+  let toastTimeout;
+
+  document.getElementById('add-to-cart').addEventListener('click', function () {
+    cartToastText.textContent = qty + (qty === 1 ? ' jar' : ' jars') + ' added to cart';
+    cartToast.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(function () { cartToast.classList.remove('show'); }, 3000);
+  });
+
+  document.getElementById('checkout-btn').addEventListener('click', function () {
+    cartToastText.textContent = 'Checkout is a demo — thanks for exploring!';
+    cartToast.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(function () { cartToast.classList.remove('show'); }, 3000);
+  });
+
+  /* ================================================================
+     SCROLL REVEAL (IntersectionObserver)
+     ================================================================ */
+  if (!prefersReducedMotion) {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(function (el) { observer.observe(el); });
+  }
+
+})();
+</script>
+</body>
+</html>
